@@ -1,0 +1,30 @@
+{
+  "name": "alertbox-for-react",
+  "version": "1.0.4",
+  "description": "Simple, lightweight, zero-dependency promise-based alert popups for React.",
+  "keywords": [
+    "react",
+    "alert",
+    "modal",
+    "popup",
+    "promise"
+  ],
+  "homepage": "https://github.com/noumanqamar450/react-alert-box#readme",
+  "bugs": {
+    "url": "https://github.com/noumanqamar450/react-alert-box/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noumanqamar450/react-alert-box.git"
+  },
+  "license": "MIT",
+  "author": "Nouman Qamar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  }
+}
