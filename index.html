@@ -42,7 +42,7 @@
               react-alert-box
             </span>
           </div>
-          <div class="hidden md:flex items-center gap-8">
+          <div id="mobileMenu" class="hidden absolute top-16 left-0 right-0 bg-slate-950 justify-items-center border-b border-slate-800 p-5 md:p-0 md:flex items-center gap-8 md:static md:bg-transparent md:border-0">
             <a
               href="#features"
               class="menu-item text-slate-300 hover:text-cyan-400 transition"
@@ -72,7 +72,7 @@
             </a>
           </div>
           <button onclick="toggleMobileMenu()" class="md:hidden text-cyan-400">
-            <i class="fas fa-bars text-2xl"></i>
+            <i id="mobileMenuBar" class="fas fa-bars text-2xl"></i>
           </button>
         </div>
       </div>
@@ -119,7 +119,7 @@
             <i class="fas fa-download mr-2"></i> Get Started
           </a>
           <button
-            onclick="openDemoAlert()"
+            onclick="scrollToSection('recipes')"
             class="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg hover:bg-cyan-400/10 transition"
           >
             <i class="fas fa-play mr-2"></i> Try Demo
@@ -136,7 +136,7 @@
           <div
             class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50"
           >
-            <div class="text-3xl font-bold text-blue-400 mb-1">&lt;5KB</div>
+            <div class="text-3xl font-bold text-blue-400 mb-1">&lt;2KB</div>
             <div class="text-sm text-slate-400">Bundle Size</div>
           </div>
           <div
