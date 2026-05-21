@@ -16,6 +16,12 @@ Built exclusively with core React Hooks (`useState`, `useRef`, `useContext`), it
 
 ---
 
+## 📥 Demo
+
+Check [Demo](https://react-alert-box.js.org)
+
+---
+
 ## 📥 Installation
 
 Install the package directly into your React project:
