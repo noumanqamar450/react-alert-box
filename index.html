@@ -1,181 +1,320 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>react-alert-box - Zero Dependency Alert & Confirmation Popups</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      alertbox-for-react - Zero Dependency Alert & Confirmation Popups
+    </title>
+    <meta
+      name="description"
+      content="A ultra-lightweight, zero-dependency Promise-based programmatic alert and confirmation popup utility for React. Built exclusively with core React Hooks."
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="font-['Space_Grotesk'] bg-slate-950 text-slate-100 overflow-x-hidden">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body
+    class="font-['Space_Grotesk'] bg-slate-950 text-slate-100 overflow-x-hidden"
+  >
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-bell text-white text-sm"></i>
-                    </div>
-                    <span class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                        react-alert-box
-                    </span>
-                </div>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#features" class="text-slate-300 hover:text-cyan-400 transition">Features</a>
-                    <a href="#installation" class="text-slate-300 hover:text-cyan-400 transition">Installation</a>
-                    <a href="#recipes" class="text-slate-300 hover:text-cyan-400 transition">Recipes</a>
-                    <a href="#api" class="text-slate-300 hover:text-cyan-400 transition">API</a>
-                    <a href="https://github.com" class="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-cyan-400">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+    <nav
+      class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center gap-2">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-triangle-exclamation text-white text-sm"></i>
             </div>
+            <span
+              class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+            >
+              react-alert-box
+            </span>
+          </div>
+          <div class="hidden md:flex items-center gap-8">
+            <a
+              href="#features"
+              class="menu-item text-slate-300 hover:text-cyan-400 transition"
+              >Features</a
+            >
+            <a
+              href="#installation"
+              class="menu-item text-slate-300 hover:text-cyan-400 transition"
+              >Installation</a
+            >
+            <a
+              href="#recipes"
+              class="menu-item text-slate-300 hover:text-cyan-400 transition"
+              >Recipes</a
+            >
+            <a
+              href="#api"
+              class="menu-item text-slate-300 hover:text-cyan-400 transition"
+              >API</a
+            >
+            <a
+              href="https://github.com/noumanqamar450/react-alert-box"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition"
+            >
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+          <button onclick="toggleMobileMenu()" class="md:hidden text-cyan-400">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
         </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 blur-3xl -z-10"></div>
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="inline-block mb-6 px-4 py-2 bg-slate-800/50 border border-cyan-400/30 rounded-full">
-                <span class="text-cyan-400 text-sm font-semibold">⚡ Zero Dependencies • Promise-Based • Fully Customizable</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Elegant Alert &amp; <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">Confirmation</span> Popups
-            </h1>
-            
-            <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                A ultra-lightweight, <span class="text-cyan-400 font-semibold">zero-dependency</span> Promise-based programmatic alert and confirmation popup utility for React. Built exclusively with core React Hooks.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <button onclick="scrollToSection('installation')" class="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition transform hover:scale-105">
-                    <i class="fas fa-download mr-2"></i> Get Started
-                </button>
-                <button onclick="openDemoAlert()" class="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg hover:bg-cyan-400/10 transition">
-                    <i class="fas fa-play mr-2"></i> Try Demo
-                </button>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                    <div class="text-3xl font-bold text-cyan-400 mb-1">0</div>
-                    <div class="text-sm text-slate-400">Dependencies</div>
-                </div>
-                <div class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                    <div class="text-3xl font-bold text-blue-400 mb-1">&lt;5KB</div>
-                    <div class="text-sm text-slate-400">Bundle Size</div>
-                </div>
-                <div class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                    <div class="text-3xl font-bold text-purple-400 mb-1">100%</div>
-                    <div class="text-sm text-slate-400">Customizable</div>
-                </div>
-                <div class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                    <div class="text-3xl font-bold text-cyan-400 mb-1">React 19</div>
-                    <div class="text-sm text-slate-400">Compatible</div>
-                </div>
-            </div>
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 blur-3xl -z-10"
+      ></div>
+      <div class="max-w-5xl mx-auto text-center">
+        <div
+          class="inline-block mb-6 px-4 py-2 bg-slate-800/50 border border-cyan-400/30 rounded-full"
+        >
+          <span class="text-cyan-400 text-sm font-semibold"
+            >⚡ Zero Dependencies • Promise-Based • Fully Customizable</span
+          >
         </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          Elegant Alert &amp;
+          <span
+            class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >Confirmation</span
+          >
+          Popups
+        </h1>
+
+        <p
+          class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed"
+        >
+          A ultra-lightweight,
+          <span class="text-cyan-400 font-semibold">zero-dependency</span>
+          Promise-based programmatic alert and confirmation popup utility for
+          React. Built exclusively with core React Hooks.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a
+            href="https://www.npmjs.com/package/alertbox-for-react"
+            target="_blank"
+            class="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition transform hover:scale-105"
+          >
+            <i class="fas fa-download mr-2"></i> Get Started
+          </a>
+          <button
+            onclick="openDemoAlert()"
+            class="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg hover:bg-cyan-400/10 transition"
+          >
+            <i class="fas fa-play mr-2"></i> Try Demo
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div
+            class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50"
+          >
+            <div class="text-3xl font-bold text-cyan-400 mb-1">0</div>
+            <div class="text-sm text-slate-400">Dependencies</div>
+          </div>
+          <div
+            class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50"
+          >
+            <div class="text-3xl font-bold text-blue-400 mb-1">&lt;5KB</div>
+            <div class="text-sm text-slate-400">Bundle Size</div>
+          </div>
+          <div
+            class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50"
+          >
+            <div class="text-3xl font-bold text-purple-400 mb-1">100%</div>
+            <div class="text-sm text-slate-400">Customizable</div>
+          </div>
+          <div
+            class="p-4 bg-slate-800/30 rounded-lg border border-slate-700/50"
+          >
+            <div class="text-3xl font-bold text-cyan-400 mb-1">React 19</div>
+            <div class="text-sm text-slate-400">Compatible</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Powerful Features</h2>
-                <p class="text-slate-400 text-lg">Everything you need for modern alert management</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Feature 1 -->
-                <div class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-cyan-400/50 transition">
-                    <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-cyan-400/30 transition">
-                        <i class="fas fa-cube text-cyan-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Zero Dependencies</h3>
-                    <p class="text-slate-400">No bundlers, external utilities, or styling preprocessors. Pure React Hooks – that's all you need.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-blue-400/50 transition">
-                    <div class="w-12 h-12 bg-blue-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-400/30 transition">
-                        <i class="fas fa-bolt text-blue-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Promise-Driven API</h3>
-                    <p class="text-slate-400">Handle confirmations natively using async/await. Write cleaner, more intuitive code.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-purple-400/50 transition">
-                    <div class="w-12 h-12 bg-purple-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-400/30 transition">
-                        <i class="fas fa-spinner text-purple-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Built-in Async Loaders</h3>
-                    <p class="text-slate-400">Pass async handlers to display reactive loader spinners and prevent double-submits automatically.</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-emerald-400/50 transition">
-                    <div class="w-12 h-12 bg-emerald-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-400/30 transition">
-                        <i class="fas fa-palette text-emerald-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Deep Customization</h3>
-                    <p class="text-slate-400">Customize colors, fonts, margins, and alignments via declarative element-targeted config objects.</p>
-                </div>
-
-                <!-- Feature 5 -->
-                <div class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-pink-400/50 transition">
-                    <div class="w-12 h-12 bg-pink-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-pink-400/30 transition">
-                        <i class="fas fa-react text-pink-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Pure React Hooks</h3>
-                    <p class="text-slate-400">Built on useState, useRef, and useContext. No class components, no complexity.</p>
-                </div>
-
-                <!-- Feature 6 -->
-                <div class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-yellow-400/50 transition">
-                    <div class="w-12 h-12 bg-yellow-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-yellow-400/30 transition">
-                        <i class="fas fa-feather text-yellow-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Lightweight</h3>
-                    <p class="text-slate-400">Ultra-minimal footprint with clean layout out of the box. No bloat.</p>
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Powerful Features</h2>
+          <p class="text-slate-400 text-lg">
+            Everything you need for modern alert management
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Feature 1 -->
+          <div
+            class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-cyan-400/50 transition"
+          >
+            <div
+              class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-cyan-400/30 transition"
+            >
+              <i class="fas fa-cube text-cyan-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Zero Dependencies</h3>
+            <p class="text-slate-400">
+              No bundlers, external utilities, or styling preprocessors. Pure
+              React Hooks – that's all you need.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-blue-400/50 transition"
+          >
+            <div
+              class="w-12 h-12 bg-blue-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-400/30 transition"
+            >
+              <i class="fas fa-bolt text-blue-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Promise-Driven API</h3>
+            <p class="text-slate-400">
+              Handle confirmations natively using async/await. Write cleaner,
+              more intuitive code.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-purple-400/50 transition"
+          >
+            <div
+              class="w-12 h-12 bg-purple-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-400/30 transition"
+            >
+              <i class="fas fa-spinner text-purple-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Built-in Async Loaders</h3>
+            <p class="text-slate-400">
+              Pass async handlers to display reactive loader spinners and
+              prevent double-submits automatically.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div
+            class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-emerald-400/50 transition"
+          >
+            <div
+              class="w-12 h-12 bg-emerald-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-400/30 transition"
+            >
+              <i class="fas fa-palette text-emerald-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Deep Customization</h3>
+            <p class="text-slate-400">
+              Customize colors, fonts, margins, and alignments via declarative
+              element-targeted config objects.
+            </p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div
+            class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-pink-400/50 transition"
+          >
+            <div
+              class="w-12 h-12 bg-pink-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-pink-400/30 transition"
+            >
+              <i class="fas fa-react text-pink-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Pure React Hooks</h3>
+            <p class="text-slate-400">
+              Built on useState, useRef, and useContext. No class components, no
+              complexity.
+            </p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div
+            class="group p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-xl hover:border-yellow-400/50 transition"
+          >
+            <div
+              class="w-12 h-12 bg-yellow-400/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-yellow-400/30 transition"
+            >
+              <i class="fas fa-feather text-yellow-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Lightweight</h3>
+            <p class="text-slate-400">
+              Ultra-minimal footprint with clean layout out of the box. No
+              bloat.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Installation Section -->
-    <section id="installation" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold mb-8">📥 Installation</h2>
-            
-            <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-8 mb-8">
-                <p class="text-slate-300 mb-4 text-sm">Install via npm:</p>
-                <div class="relative">
-                    <pre class="bg-slate-950 rounded-lg p-4 overflow-x-auto text-cyan-400"><code>npm install react-alert-box</code></pre>
-                    <button onclick="copyCode(this)" class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition">Copy</button>
-                </div>
-            </div>
+    <section
+      id="installation"
+      class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50"
+    >
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8">📥 Installation</h2>
 
-            <div class="bg-blue-500/10 border border-blue-400/30 rounded-xl p-6 mb-8">
-                <p class="text-sm text-blue-300">
-                    <span class="font-semibold">Requirements:</span> React version ^16.8.0, ^17.0.0, ^18.0.0, or ^19.0.0 as a peer dependency.
-                </p>
-            </div>
+        <div
+          class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-8 mb-8"
+        >
+          <p class="text-slate-300 mb-4 text-sm">Install via npm:</p>
+          <div class="relative">
+            <pre
+              class="bg-slate-950 rounded-lg p-4 overflow-x-auto text-cyan-400"
+            ><code>npm install alertbox-for-react</code></pre>
+            <button
+              onclick="copyCode(this)"
+              class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition"
+            >
+              Copy
+            </button>
+          </div>
+        </div>
 
-            <h3 class="text-2xl font-bold mb-6">🚀 Setup Guide</h3>
-            <p class="text-slate-300 mb-6">Wrap your application tree inside the <span class="text-cyan-400 font-semibold">AlertProvider</span>:</p>
+        <div
+          class="bg-blue-500/10 border border-blue-400/30 rounded-xl p-6 mb-8"
+        >
+          <p class="text-sm text-blue-300">
+            <span class="font-semibold">Requirements:</span> React version
+            ^16.8.0, ^17.0.0, ^18.0.0, or ^19.0.0 as a peer dependency.
+          </p>
+        </div>
 
-            <div class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-8 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent"></div>
-                <pre class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"><code><span class="text-purple-400">import</span> React <span class="text-purple-400">from</span> <span class="text-green-400">'react'</span>;
-<span class="text-purple-400">import</span> { AlertProvider } <span class="text-purple-400">from</span> <span class="text-green-400">'react-alert-box'</span>;
+        <h3 class="text-2xl font-bold mb-6">🚀 Setup Guide</h3>
+        <p class="text-slate-300 mb-6">
+          Wrap your application tree inside the
+          <span class="text-cyan-400 font-semibold">AlertProvider</span>:
+        </p>
+
+        <div
+          class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-8 overflow-hidden"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent"
+          ></div>
+          <pre
+            class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"
+          ><code><span class="text-purple-400">import</span> React <span class="text-purple-400">from</span> <span class="text-green-400">'react'</span>;
+<span class="text-purple-400">import</span> { AlertProvider } <span class="text-purple-400">from</span> <span class="text-green-400">'alertbox-for-react'</span>;
 <span class="text-purple-400">import</span> Dashboard <span class="text-purple-400">from</span> <span class="text-green-400">'./Dashboard'</span>;
 
 <span class="text-purple-400">function</span> <span class="text-yellow-400">App</span>() {
@@ -187,28 +326,46 @@
 }
 
 <span class="text-purple-400">export default</span> App;</code></pre>
-                <button onclick="copyCode(this)" class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition">Copy</button>
-            </div>
+          <button
+            onclick="copyCode(this)"
+            class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition"
+          >
+            Copy
+          </button>
         </div>
+      </div>
     </section>
 
     <!-- Recipes Section -->
     <section id="recipes" class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-bold mb-12">💻 Code Recipes</h2>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12">💻 Code Recipes</h2>
 
-            <!-- Recipe 1 -->
-            <div class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400 font-bold">1</div>
-                    <h3 class="text-2xl font-bold">Simple Alert Popup</h3>
-                </div>
-                <p class="text-slate-400 mb-6">Ideal for standard notifications or confirmation modals requiring a simple close or action choice.</p>
-                
-                <div class="grid lg:grid-cols-2 gap-8 mb-6">
-                    <div class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent"></div>
-                        <pre class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"><code><span class="text-purple-400">import</span> { useAlert } <span class="text-purple-400">from</span> <span class="text-green-400">'react-alert-box'</span>;
+        <!-- Recipe 1 -->
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400 font-bold"
+            >
+              1
+            </div>
+            <h3 class="text-2xl font-bold">Simple Alert Popup</h3>
+          </div>
+          <p class="text-slate-400 mb-6">
+            Ideal for standard notifications or confirmation modals requiring a
+            simple close or action choice.
+          </p>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-6">
+            <div
+              class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent"
+              ></div>
+              <pre
+                class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"
+              ><code><span class="text-purple-400">import</span> { useAlert } <span class="text-purple-400">from</span> <span class="text-green-400">'alertbox-for-react'</span>;
 
 <span class="text-purple-400">export default function</span> <span class="text-yellow-400">SimpleDemo</span>() {
   <span class="text-purple-400">const</span> alert = <span class="text-cyan-400">useAlert</span>();
@@ -229,33 +386,57 @@
     &lt;/<span class="text-blue-400">button</span>&gt;
   );
 }</code></pre>
-                        <button onclick="copyCode(this)" class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition">Copy</button>
-                    </div>
-                    <div class="flex flex-col justify-center">
-                        <button onclick="demoSimpleAlert()" class="w-full px-6 py-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition transform hover:scale-105 mb-4">
-                            <i class="fas fa-play mr-2"></i> Try This Recipe
-                        </button>
-                        <div class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                            <p class="text-sm text-slate-300">
-                                <span class="text-cyan-400 font-semibold">Output:</span> A simple alert with confirmation and cancel buttons.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+              <button
+                onclick="copyCode(this)"
+                class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition"
+              >
+                Copy
+              </button>
             </div>
+            <div class="flex flex-col justify-center">
+              <button
+                onclick="demoSimpleAlert()"
+                class="w-full px-6 py-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition transform hover:scale-105 mb-4"
+              >
+                <i class="fas fa-play mr-2"></i> Try This Recipe
+              </button>
+              <div
+                class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50"
+              >
+                <p class="text-sm text-slate-300">
+                  <span class="text-cyan-400 font-semibold">Output:</span> A
+                  simple alert with confirmation and cancel buttons.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <!-- Recipe 2 -->
-            <div class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-8 h-8 rounded-full bg-blue-400/20 flex items-center justify-center text-blue-400 font-bold">2</div>
-                    <h3 class="text-2xl font-bold">Async with Built-in Loader</h3>
-                </div>
-                <p class="text-slate-400 mb-6">When you map an async function block to onConfirm, the system intercepts the lifecycle, locks down buttons, and shows a spinner.</p>
-                
-                <div class="grid lg:grid-cols-2 gap-8 mb-6">
-                    <div class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent"></div>
-                        <pre class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"><code><span class="text-purple-400">const</span> <span class="text-yellow-400">handleDeleteDB</span> = <span class="text-orange-400">async</span> () =&gt; {
+        <!-- Recipe 2 -->
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-8 h-8 rounded-full bg-blue-400/20 flex items-center justify-center text-blue-400 font-bold"
+            >
+              2
+            </div>
+            <h3 class="text-2xl font-bold">Async with Built-in Loader</h3>
+          </div>
+          <p class="text-slate-400 mb-6">
+            When you map an async function block to onConfirm, the system
+            intercepts the lifecycle, locks down buttons, and shows a spinner.
+          </p>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-6">
+            <div
+              class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent"
+              ></div>
+              <pre
+                class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"
+              ><code><span class="text-purple-400">const</span> <span class="text-yellow-400">handleDeleteDB</span> = <span class="text-orange-400">async</span> () =&gt; {
   <span class="text-purple-400">const</span> confirmed = <span class="text-purple-400">await</span> alert.<span class="text-cyan-400">show</span>({
     title: <span class="text-green-400">"Purge Cluster"</span>,
     message: <span class="text-green-400">"This will disconnect..."</span>,
@@ -276,47 +457,75 @@
     });
   }
 };</code></pre>
-                        <button onclick="copyCode(this)" class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition">Copy</button>
-                    </div>
-                    <div class="flex flex-col justify-center">
-                        <button onclick="demoAsyncAlert()" class="w-full px-6 py-4 bg-gradient-to-r from-blue-400 to-purple-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-blue-500/50 transition transform hover:scale-105 mb-4">
-                            <i class="fas fa-play mr-2"></i> Try This Recipe
-                        </button>
-                        <div class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                            <p class="text-sm text-slate-300">
-                                <span class="text-blue-400 font-semibold">Output:</span> Loading spinner appears during async operation. Auto-dismiss on completion.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+              <button
+                onclick="copyCode(this)"
+                class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition"
+              >
+                Copy
+              </button>
             </div>
+            <div class="flex flex-col justify-center">
+              <button
+                onclick="demoAsyncAlert()"
+                class="w-full px-6 py-4 bg-gradient-to-r from-blue-400 to-purple-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-blue-500/50 transition transform hover:scale-105 mb-4"
+              >
+                <i class="fas fa-play mr-2"></i> Try This Recipe
+              </button>
+              <div
+                class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50"
+              >
+                <p class="text-sm text-slate-300">
+                  <span class="text-blue-400 font-semibold">Output:</span>
+                  Loading spinner appears during async operation. Auto-dismiss
+                  on completion.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <!-- Recipe 3 -->
-            <div class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-8 h-8 rounded-full bg-purple-400/20 flex items-center justify-center text-purple-400 font-bold">3</div>
-                    <h3 class="text-2xl font-bold">Deep Customization with Themes</h3>
-                </div>
-                <p class="text-slate-400 mb-6">The package uses zero external stylesheets. Style adjustments are handled via inline mappings and custom style objects.</p>
-                
-                <div class="grid lg:grid-cols-2 gap-8 mb-6">
-                    <div class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent"></div>
-                        <pre class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"><code><span class="text-purple-400">const</span> <span class="text-yellow-400">handleDarkTheme</span> = () =&gt; {
+        <!-- Recipe 3 -->
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-8 h-8 rounded-full bg-purple-400/20 flex items-center justify-center text-purple-400 font-bold"
+            >
+              3
+            </div>
+            <h3 class="text-2xl font-bold">Deep Customization with Themes</h3>
+          </div>
+          <p class="text-slate-400 mb-6">
+            The package uses zero external stylesheets. Style adjustments are
+            handled via inline mappings and custom style objects.
+          </p>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-6">
+            <div
+              class="relative bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent"
+              ></div>
+              <pre
+                class="relative font-['JetBrains_Mono'] text-sm overflow-x-auto text-slate-300"
+              ><code><span class="text-purple-400">const</span> <span class="text-yellow-400">handleDarkTheme</span> = () =&gt; {
   alert.<span class="text-cyan-400">show</span>({
     title: <span class="text-green-400">"Threat Blocked"</span>,
     message: <span class="text-green-400">"Packet mitigated."</span>,
     style: {
       overlay: { 
-        backgroundColor: <span class="text-green-400">'rgba(15, 23, 42, 0.85)'</span>
+        backgroundColor: <span class="text-green-400">'rgba(255, 255, 255, 0.50)'</span>
       },
       box: { 
         backgroundColor: <span class="text-green-400">'#1e293b'</span>,
-        border: <span class="text-green-400">'1px solid #334155'</span>
+        border: <span class="text-green-400">'1px solid #334155'</span>,
       },
       title: { 
         color: <span class="text-green-400">'#ef4444'</span>,
         fontWeight: <span class="text-green-400">'bold'</span>
+      },
+      message: { 
+            color: <span class="text-green-400">'#334155'</span>
       },
       confirmBtn: { 
         backgroundColor: <span class="text-green-400">'#ef4444'</span>,
@@ -325,198 +534,361 @@
     }
   });
 };</code></pre>
-                        <button onclick="copyCode(this)" class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition">Copy</button>
-                    </div>
-                    <div class="flex flex-col justify-center">
-                        <button onclick="demoCustomTheme()" class="w-full px-6 py-4 bg-gradient-to-r from-purple-400 to-pink-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-purple-500/50 transition transform hover:scale-105 mb-4">
-                            <i class="fas fa-play mr-2"></i> Try This Recipe
-                        </button>
-                        <div class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                            <p class="text-sm text-slate-300">
-                                <span class="text-purple-400 font-semibold">Output:</span> Dark-themed alert with custom colors and styling.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+              <button
+                onclick="copyCode(this)"
+                class="absolute top-2 right-2 px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition"
+              >
+                Copy
+              </button>
             </div>
+            <div class="flex flex-col justify-center">
+              <button
+                onclick="demoCustomTheme()"
+                class="w-full px-6 py-4 bg-gradient-to-r from-purple-400 to-pink-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-purple-500/50 transition transform hover:scale-105 mb-4"
+              >
+                <i class="fas fa-play mr-2"></i> Try This Recipe
+              </button>
+              <div
+                class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50"
+              >
+                <p class="text-sm text-slate-300">
+                  <span class="text-purple-400 font-semibold">Output:</span>
+                  Dark-themed alert with custom colors and styling.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- API Reference Section -->
     <section id="api" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-bold mb-12">⚙️ Configuration API Reference</h2>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12">⚙️ Configuration API Reference</h2>
 
-            <div class="mb-12">
-                <h3 class="text-2xl font-bold mb-6">Alert.show() Parameters</h3>
-                
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="border-b border-slate-700">
-                                <th class="text-left py-4 px-4 font-bold text-cyan-400">Parameter</th>
-                                <th class="text-left py-4 px-4 font-bold text-cyan-400">Type</th>
-                                <th class="text-left py-4 px-4 font-bold text-cyan-400">Default</th>
-                                <th class="text-left py-4 px-4 font-bold text-cyan-400">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-700/50">
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="py-4 px-4 font-mono text-cyan-400">title</td>
-                                <td class="py-4 px-4 text-slate-400">String</td>
-                                <td class="py-4 px-4 text-slate-500">'Alert'</td>
-                                <td class="py-4 px-4 text-slate-300">Prominent header text at the top</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="py-4 px-4 font-mono text-cyan-400">message</td>
-                                <td class="py-4 px-4 text-slate-400">String</td>
-                                <td class="py-4 px-4 text-slate-500">''</td>
-                                <td class="py-4 px-4 text-slate-300">Descriptive message or body text</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="py-4 px-4 font-mono text-cyan-400">confirmText</td>
-                                <td class="py-4 px-4 text-slate-400">String</td>
-                                <td class="py-4 px-4 text-slate-500">'Confirm'</td>
-                                <td class="py-4 px-4 text-slate-300">Confirmation button label</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="py-4 px-4 font-mono text-cyan-400">cancelText</td>
-                                <td class="py-4 px-4 text-slate-400">String</td>
-                                <td class="py-4 px-4 text-slate-500">'Cancel'</td>
-                                <td class="py-4 px-4 text-slate-300">Cancel button label</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="py-4 px-4 font-mono text-cyan-400">showCancel</td>
-                                <td class="py-4 px-4 text-slate-400">Boolean</td>
-                                <td class="py-4 px-4 text-slate-500">true</td>
-                                <td class="py-4 px-4 text-slate-300">Show/hide cancel button</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="py-4 px-4 font-mono text-cyan-400">onConfirm</td>
-                                <td class="py-4 px-4 text-slate-400">Function</td>
-                                <td class="py-4 px-4 text-slate-500">undefined</td>
-                                <td class="py-4 px-4 text-slate-300">Callback executed on confirm (sync/async)</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="py-4 px-4 font-mono text-cyan-400">style</td>
-                                <td class="py-4 px-4 text-slate-400">Object</td>
-                                <td class="py-4 px-4 text-slate-500">{}</td>
-                                <td class="py-4 px-4 text-slate-300">Custom inline CSS declarations</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="mb-12">
+          <h3 class="text-2xl font-bold mb-6">Alert.show() Parameters</h3>
 
-            <div>
-                <h3 class="text-2xl font-bold mb-6">Style Customization Nodes</h3>
-                <p class="text-slate-400 mb-6">Pass CSS properties within these dictionary target keys:</p>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                        <ul class="space-y-3 text-sm text-slate-300">
-                            <li><span class="text-cyan-400 font-mono">overlay</span> - Background dimming</li>
-                            <li><span class="text-cyan-400 font-mono">box</span> - Main container</li>
-                            <li><span class="text-cyan-400 font-mono">title</span> - Heading typography</li>
-                            <li><span class="text-cyan-400 font-mono">message</span> - Body text</li>
-                        </ul>
-                    </div>
-                    <div class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                        <ul class="space-y-3 text-sm text-slate-300">
-                            <li><span class="text-cyan-400 font-mono">actions</span> - Button container</li>
-                            <li><span class="text-cyan-400 font-mono">btn</span> - Base button styles</li>
-                            <li><span class="text-cyan-400 font-mono">confirmBtn</span> - Confirm styling</li>
-                            <li><span class="text-cyan-400 font-mono">cancelBtn</span> - Cancel styling</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-slate-700">
+                  <th class="text-left py-4 px-4 font-bold text-cyan-400">
+                    Parameter
+                  </th>
+                  <th class="text-left py-4 px-4 font-bold text-cyan-400">
+                    Type
+                  </th>
+                  <th class="text-left py-4 px-4 font-bold text-cyan-400">
+                    Default
+                  </th>
+                  <th class="text-left py-4 px-4 font-bold text-cyan-400">
+                    Description
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-700/50">
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-4 px-4 font-mono text-cyan-400">title</td>
+                  <td class="py-4 px-4 text-slate-400">String</td>
+                  <td class="py-4 px-4 text-slate-500">'Alert'</td>
+                  <td class="py-4 px-4 text-slate-300">
+                    Prominent header text at the top
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-4 px-4 font-mono text-cyan-400">message</td>
+                  <td class="py-4 px-4 text-slate-400">String</td>
+                  <td class="py-4 px-4 text-slate-500">''</td>
+                  <td class="py-4 px-4 text-slate-300">
+                    Descriptive message or body text
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-4 px-4 font-mono text-cyan-400">confirmText</td>
+                  <td class="py-4 px-4 text-slate-400">String</td>
+                  <td class="py-4 px-4 text-slate-500">'Confirm'</td>
+                  <td class="py-4 px-4 text-slate-300">
+                    Confirmation button label
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-4 px-4 font-mono text-cyan-400">cancelText</td>
+                  <td class="py-4 px-4 text-slate-400">String</td>
+                  <td class="py-4 px-4 text-slate-500">'Cancel'</td>
+                  <td class="py-4 px-4 text-slate-300">Cancel button label</td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-4 px-4 font-mono text-cyan-400">showCancel</td>
+                  <td class="py-4 px-4 text-slate-400">Boolean</td>
+                  <td class="py-4 px-4 text-slate-500">true</td>
+                  <td class="py-4 px-4 text-slate-300">
+                    Show/hide cancel button
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-4 px-4 font-mono text-cyan-400">onConfirm</td>
+                  <td class="py-4 px-4 text-slate-400">Function</td>
+                  <td class="py-4 px-4 text-slate-500">undefined</td>
+                  <td class="py-4 px-4 text-slate-300">
+                    Callback executed on confirm (sync/async)
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-4 px-4 font-mono text-cyan-400">style</td>
+                  <td class="py-4 px-4 text-slate-400">Object</td>
+                  <td class="py-4 px-4 text-slate-500">{}</td>
+                  <td class="py-4 px-4 text-slate-300">
+                    Custom inline CSS declarations
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-6">Style Customization Nodes</h3>
+          <p class="text-slate-400 mb-6">
+            Pass CSS properties within these dictionary target keys:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div
+              class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50"
+            >
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li>
+                  <span class="text-cyan-400 font-mono">overlay</span> -
+                  Background dimming
+                </li>
+                <li>
+                  <span class="text-cyan-400 font-mono">box</span> - Main
+                  container
+                </li>
+                <li>
+                  <span class="text-cyan-400 font-mono">title</span> - Heading
+                  typography
+                </li>
+                <li>
+                  <span class="text-cyan-400 font-mono">message</span> - Body
+                  text
+                </li>
+              </ul>
+            </div>
+            <div
+              class="p-6 bg-slate-800/30 rounded-lg border border-slate-700/50"
+            >
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li>
+                  <span class="text-cyan-400 font-mono">actions</span> - Button
+                  container
+                </li>
+                <li>
+                  <span class="text-cyan-400 font-mono">btn</span> - Base button
+                  styles
+                </li>
+                <li>
+                  <span class="text-cyan-400 font-mono">confirmBtn</span> -
+                  Confirm styling
+                </li>
+                <li>
+                  <span class="text-cyan-400 font-mono">cancelBtn</span> -
+                  Cancel styling
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Demo Alert Box (Hidden by default) -->
-    <div id="demoAlertOverlay" class="hidden fixed inset-0 bg-slate-950/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scale-in">
-            <h3 id="alertTitle" class="text-2xl font-bold mb-4 text-cyan-400">Alert Title</h3>
-            <p id="alertMessage" class="text-slate-300 mb-8 leading-relaxed">Alert message goes here</p>
-            <div class="flex gap-4">
-                <button onclick="closeAlert(false)" id="cancelBtn" class="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition">
-                    Cancel
-                </button>
-                <button onclick="closeAlert(true)" id="confirmBtn" class="flex-1 px-4 py-3 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-semibold rounded-lg hover:shadow-xl transition flex items-center justify-center gap-2">
-                    <span id="confirmBtnText">Confirm</span>
-                    <i id="loaderIcon" class="hidden fas fa-spinner animate-spin"></i>
-                </button>
-            </div>
+    <div
+      id="demoAlertOverlay"
+      class="hidden fixed inset-0 bg-slate-950/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+    >
+      <div
+        id="demoAlertBox"
+        class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scale-in"
+      >
+        <h3 id="alertTitle" class="text-2xl font-bold mb-4 text-cyan-400">
+          Alert Title
+        </h3>
+        <p id="alertMessage" class="text-slate-300 mb-8 leading-relaxed">
+          Alert message goes here
+        </p>
+        <div class="flex gap-4">
+          <button
+            onclick="closeAlert(false)"
+            id="cancelBtn"
+            class="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition"
+          >
+            Cancel
+          </button>
+          <button
+            onclick="closeAlert(true)"
+            id="confirmBtn"
+            class="flex-1 px-4 py-3 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-semibold rounded-lg hover:shadow-xl transition flex items-center justify-center gap-2"
+          >
+            <span id="confirmBtnText">Confirm</span>
+            <i id="loaderIcon" class="hidden fas fa-spinner animate-spin"></i>
+          </button>
         </div>
+      </div>
     </div>
 
     <!-- CTA Section -->
     <section class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 blur-3xl -z-10"></div>
-        
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Get Started?</h2>
-            <p class="text-xl text-slate-300 mb-8">Install react-alert-box and streamline your alert management in seconds.</p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="scrollToSection('installation')" class="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition transform hover:scale-105">
-                    <i class="fas fa-download mr-2"></i> Install Now
-                </button>
-                <a href="https://github.com" class="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg hover:bg-cyan-400/10 transition flex items-center justify-center gap-2">
-                    <i class="fab fa-github"></i> View on GitHub
-                </a>
-            </div>
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 blur-3xl -z-10"
+      ></div>
+
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          Ready to Get Started?
+        </h2>
+        <p class="text-xl text-slate-300 mb-8">
+          Install react-alert-box and streamline your alert management in
+          seconds.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="scrollToSection('installation')"
+            class="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-bold rounded-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition transform hover:scale-105"
+          >
+            <i class="fas fa-download mr-2"></i> Install Now
+          </button>
+          <a
+            href="https://github.com/noumanqamar450/react-alert-box"
+            class="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg hover:bg-cyan-400/10 transition flex items-center justify-center gap-2"
+          >
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h4 class="font-bold mb-4 text-cyan-400">Product</h4>
-                    <ul class="space-y-2 text-slate-400 text-sm">
-                        <li><a href="#features" class="hover:text-cyan-400 transition">Features</a></li>
-                        <li><a href="#recipes" class="hover:text-cyan-400 transition">Recipes</a></li>
-                        <li><a href="#api" class="hover:text-cyan-400 transition">API Docs</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-cyan-400">Resources</h4>
-                    <ul class="space-y-2 text-slate-400 text-sm">
-                        <li><a href="https://github.com" class="hover:text-cyan-400 transition">GitHub</a></li>
-                        <li><a href="https://npm.js.com" class="hover:text-cyan-400 transition">npm Package</a></li>
-                        <li><a href="#" class="hover:text-cyan-400 transition">Documentation</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-cyan-400">Company</h4>
-                    <ul class="space-y-2 text-slate-400 text-sm">
-                        <li><a href="#" class="hover:text-cyan-400 transition">About</a></li>
-                        <li><a href="#" class="hover:text-cyan-400 transition">License</a></li>
-                        <li><a href="#" class="hover:text-cyan-400 transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-cyan-400">Follow</h4>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-slate-400 hover:text-cyan-400 transition"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-slate-400 hover:text-cyan-400 transition"><i class="fab fa-github"></i></a>
-                        <a href="#" class="text-slate-400 hover:text-cyan-400 transition"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h4 class="font-bold mb-4 text-cyan-400">Product</h4>
+            <ul class="space-y-2 text-slate-400 text-sm">
+              <li>
+                <a href="#features" class="hover:text-cyan-400 transition"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a href="#recipes" class="hover:text-cyan-400 transition"
+                  >Recipes</a
+                >
+              </li>
+              <li>
+                <a href="#api" class="hover:text-cyan-400 transition"
+                  >API Docs</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4 text-cyan-400">Resources</h4>
+            <ul class="space-y-2 text-slate-400 text-sm">
+              <li>
+                <a
+                  href="https://github.com/noumanqamar450/react-alert-box"
+                  class="hover:text-cyan-400 transition"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/alertbox-for-react"
+                  class="hover:text-cyan-400 transition"
+                  >npm Package</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/alertbox-for-react?activeTab=readme"
+                  class="hover:text-cyan-400 transition"
+                  >Documentation</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4 text-cyan-400">Sitemap</h4>
+            <ul class="space-y-2 text-slate-400 text-sm">
+              <li>
+                <a
+                  href="https://github.com/noumanqamar450"
+                  class="hover:text-cyan-400 transition"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/noumanqamar450/react-alert-box?tab=MIT-1-ov-file"
+                  class="hover:text-cyan-400 transition"
+                  >License</a
+                >
+              </li>
+              <li>
+                <a
+                  href="mailto:noumanqamar450@gmail.com"
+                  class="hover:text-cyan-400 transition"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4 text-cyan-400">Follow</h4>
+            <div class="flex gap-4">
+              <a
+                href="https://www.npmjs.com/~noumanqamar"
+                target="_blank"
+                class="text-slate-400 hover:text-cyan-400 transition"
+                ><i class="fab fa-npm"></i
+              ></a>
+              <a
+                href="https://github.com/noumanqamar450"
+                target="_blank"
+                class="text-slate-400 hover:text-cyan-400 transition"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/nouman-qamar/"
+                target="_blank"
+                class="text-slate-400 hover:text-cyan-400 transition"
+                ><i class="fab fa-linkedin"></i
+              ></a>
             </div>
-            
-            <div class="border-t border-slate-800 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
-                    <p>&copy; 2026 react-alert-box. Created by <span class="text-cyan-400">Nouman Qamar</span></p>
-                    <p>Distributed under the <span class="text-cyan-400">MIT License</span></p>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="border-t border-slate-800 pt-8">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm"
+          >
+            <p>
+              &copy; 2026 react-alert-box. Created by
+              <span class="text-cyan-400">Nouman Qamar</span>
+            </p>
+            <p>
+              Distributed under the
+              <span class="text-cyan-400">MIT License</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
 
-    <script src="app.js"></script>
-</body>
+    <script src="js/app.js"></script>
+  </body>
 </html>

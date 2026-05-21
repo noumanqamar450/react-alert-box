@@ -1,175 +1,87 @@
-/* ════════════════════════════════════════
-   ALERTBOX — Upgraded app.js
-   Vanilla JS — no jQuery, no Owl Carousel
-   ════════════════════════════════════════ */
-
-document.addEventListener("DOMContentLoaded", () => {
-  // ── 1. Navbar scroll effect ───────────────────────────────
-  const navbar = document.getElementById("navbar");
-  const onScroll = () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 40);
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  // ── 2. Mobile menu toggle ─────────────────────────────────
-  const menuBtn = document.getElementById("mobileMenuBtn");
-  const mobileDrawer = document.getElementById("mobileDrawer");
-  if (menuBtn && mobileDrawer) {
-    menuBtn.addEventListener("click", () => {
-      const isOpen = !mobileDrawer.classList.contains("hidden");
-      mobileDrawer.classList.toggle("hidden", isOpen);
-      mobileDrawer.classList.toggle("flex", !isOpen);
-      menuBtn.querySelector("i").className = isOpen
-        ? "fa fa-bars text-lg"
-        : "fa fa-xmark text-lg";
-    });
-    // Close when a link is clicked
-    mobileDrawer.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => {
-        mobileDrawer.classList.add("hidden");
-        mobileDrawer.classList.remove("flex");
-        menuBtn.querySelector("i").className = "fa fa-bars text-lg";
-      });
-    });
-  }
-
-  // ── 3. Copy-to-clipboard ──────────────────────────────────
-  document.querySelectorAll(".copy-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const codeId = btn.dataset.code;
-      const codeEl = codeId ? document.getElementById(codeId) : null;
-      const text = codeEl ? codeEl.innerText.trim() : "";
-
-      if (!text) return;
-
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          btn.innerHTML = '<i class="fa fa-check"></i>';
-          btn.classList.add("copied");
-          showToast("success");
-          setTimeout(() => {
-            btn.innerHTML = '<i class="fa fa-copy"></i>';
-            btn.classList.remove("copied");
-          }, 2500);
-        })
-        .catch(() => {
-          showToast("error");
-        });
-    });
-  });
-
-  // ── 4. Toast helper ───────────────────────────────────────
-  function showToast(type) {
-    const toast = document.getElementById(
-      type === "success" ? "toastSuccess" : "toastError",
-    );
-    if (!toast) return;
-    toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 3000);
-  }
-
-  // ── 5. Smooth-scroll nav links ────────────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
       }
-    });
-  });
-
-  // ── 6. Carousel ───────────────────────────────────────────
-  new Splide(".splide", {
-    type: "loop",
-    autoplay: 'pause',
-    perPage: 3,
-    padding: 0,
-    classes: {
-		arrows: 'splide__arrows',
-		arrow : 'splide__arrow',
-		prev  : 'splide__arrow--prev',
-		next  : 'splide__arrow--next',
-  },
-    breakpoints: {
-		640: {
-            perPage: 1,
-        },
-    }
-  }).mount();
-  //   const track     = document.getElementById('carouselTrack');
-  //   const dotsWrap  = document.getElementById('carouselDots');
-  //   const prevBtn   = document.getElementById('prevSlide');
-  //   const nextBtn   = document.getElementById('nextSlide');
-
-  //   if (track) {
-  //     const slides     = track.querySelectorAll('.carousel-slide');
-  //     const total      = slides.length;
-  //     let   current    = 0;
-  //     let   autoTimer  = null;
-
-  //     // Build dots
-  //     slides.forEach((_, i) => {
-  //       const dot = document.createElement('button');
-  //       dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-  //       dot.setAttribute('aria-label', `Slide ${i + 1}`);
-  //       dot.addEventListener('click', () => goTo(i));
-  //       dotsWrap.appendChild(dot);
-  //     });
-
-  //     function goTo(index) {
-  //       current = (index + total) % total;
-  //       track.style.transform = `translateX(-${current * 100}%)`;
-  //       dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => {
-  //         d.classList.toggle('active', i === current);
-  //       });
-  //     }
-
-  //     function next() { goTo(current + 1); }
-  //     function prev() { goTo(current - 1); }
-
-  //     nextBtn?.addEventListener('click', () => { next(); resetAuto(); });
-  //     prevBtn?.addEventListener('click', () => { prev(); resetAuto(); });
-
-  //     // Autoplay
-  //     function startAuto() {
-  //       autoTimer = setInterval(next, 3500);
-  //     }
-  //     function resetAuto() {
-  //       clearInterval(autoTimer);
-  //       startAuto();
-  //     }
-  //     startAuto();
-
-  //     // Pause on hover
-  //     track.parentElement.addEventListener('mouseenter', () => clearInterval(autoTimer));
-  //     track.parentElement.addEventListener('mouseleave', startAuto);
-
-  //     // Touch / swipe
-  //     let touchStartX = 0;
-  //     track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  //     track.addEventListener('touchend', e => {
-  //       const diff = touchStartX - e.changedTouches[0].clientX;
-  //       if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); resetAuto(); }
-  //     }, { passive: true });
-  //   }
-
-  // ── 7. Scroll reveal ──────────────────────────────────────
-  const revealEls = document.querySelectorAll(
-    ".reveal, .reveal-left, .reveal-right",
-  );
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          revealObserver.unobserve(entry.target);
+      copyCode = (button) => {
+        const codeBlock = button.previousElementSibling;
+        navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+          button.innerText = "Copied!";
+          setTimeout(() => (button.innerText = "Copy"), 2000);
+        });
+      };
+      demoCustomTheme = () => { 
+        const style = {
+          overlay: { 
+            backgroundColor: 'rgba(255, 255, 255, 0.50)'
+          },
+          box: { 
+            backgroundColor: '#ffffff',
+            border: '1px solid gray',
+            backgroundImage: "unset"
+          },
+          title: { 
+            color: '#ef4444',
+            fontWeight: 'bold'
+          },
+          message: { 
+            color: '#334155'
+          },
+          confirmBtn: { 
+            backgroundColor: '#ef4444',
+            color: '#ffffff',
+            backgroundImage: "unset"
+          }
         }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-  );
+        document.getElementById("demoAlertOverlay").classList.remove("hidden");
+        document.getElementById("alertTitle").innerText = "Threat Blocked";
+        document.getElementById("alertMessage").innerText = "Packet mitigated.";
+        const overlay = document.getElementById("demoAlertOverlay");
+        const box = document.getElementById("demoAlertBox");
+        const title = document.getElementById("alertTitle");
+        const message = document.getElementById("alertMessage");
+        const confirmBtn = document.getElementById("confirmBtn");
+        
 
-  revealEls.forEach((el) => revealObserver.observe(el));
-});
+        Object.assign(overlay.style, style.overlay);
+        Object.assign(box.style, style.box);
+        Object.assign(title.style, style.title);
+        Object.assign(message.style, style.message);
+        Object.assign(confirmBtn.style, style.confirmBtn);
+      }
+      demoAsyncAlert = () => {
+        document.getElementById("demoAlertOverlay").classList.remove('hidden')
+        document.getElementById("alertTitle").innerText = "Purging Cluster...";
+        document.getElementById("alertMessage").innerText = "This will disconnect all clients and cannot be undone.";
+        document.getElementById("confirmBtnText").innerText = "Purge Cluster";
+        document.getElementById("confirmBtn").setAttribute("disabled", "true");
+        const loaderIcon = document.getElementById("loaderIcon");
+        loaderIcon.classList.remove("hidden");
+        setTimeout(() => {
+          loaderIcon.classList.add("hidden");
+          document.getElementById("alertTitle").innerText = "Success!";
+          document.getElementById("alertMessage").innerText = "Cluster purged successfully.";
+          document.getElementById("confirmBtnText").innerText = "Close";
+          document.getElementById("confirmBtn").removeAttribute("disabled");
+        }, 3000);
+
+
+      }
+      demoSimpleAlert = () => {
+        document.getElementById("demoAlertOverlay").classList.remove("hidden");
+        document.getElementById("alertTitle").innerText = "Discard Draft?";
+        document.getElementById("alertMessage").innerText =
+          "Are you sure you want to discard your changes?";
+        document.getElementById("confirmBtnText").innerText = "Discard";
+      }
+      closeAlert = () => {
+        document.getElementById("demoAlertOverlay").classList.add("hidden");
+        document.getElementById("alertTitle").innerText = "";
+        document.getElementById("alertMessage").innerText = "";
+        document.getElementById("confirmBtnText").innerText = "";
+        document.getElementById("confirmBtn").removeAttribute("disabled");
+        document.getElementById("loaderIcon").classList.add("hidden");
+        document.getElementById("demoAlertOverlay").style = "";
+        document.getElementById("demoAlertBox").style = "";
+        document.getElementById("alertTitle").style = "";
+        document.getElementById("alertMessage").style = "";
+        document.getElementById("confirmBtn").style = "";
+      }

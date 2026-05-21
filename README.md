@@ -1,4 +1,4 @@
-# react-alert-box
+# Alertbox for React
 
 A ultra-lightweight, **zero-dependency**, Promise-based programmatic alert and confirmation popup utility for React. 
 
@@ -29,7 +29,7 @@ Install the package directly into your React project:
 
 
 ```bash
-npm install react-alert-box
+npm install alertbox-for-react
 
 ```
 
@@ -43,7 +43,7 @@ Wrap your application tree (usually in `App.js`, `main.jsx`, or `index.js`) insi
 
 ```jsx
 import React from 'react';
-import { AlertProvider } from 'react-alert-box';
+import { AlertProvider } from 'alertbox-for-react';
 import Dashboard from './Dashboard';
 
 function App() {
@@ -69,7 +69,7 @@ Ideal for standard notifications or confirmation modals requiring a simple close
 
 ```jsx
 import React from 'react';
-import { useAlert } from 'react-alert-box';
+import { useAlert } from 'alertbox-for-react';
 
 export default function SimpleDemo() {
   const alert = useAlert();
@@ -95,7 +95,7 @@ When you map an `async` function block to `onConfirm`, the system intercepts the
 
 ```jsx
 import React from 'react';
-import { useAlert } from 'react-alert-box';
+import { useAlert } from 'alertbox-for-react';
 
 export default function AsyncDemo() {
   const alert = useAlert();
@@ -134,7 +134,7 @@ The package uses zero external stylesheets. Style adjustments are handled via in
 
 ```jsx
 import React from 'react';
-import { useAlert } from 'react-alert-box';
+import { useAlert } from 'alertbox-for-react';
 
 export default function CustomThemeDemo() {
   const alert = useAlert();

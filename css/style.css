@@ -265,11 +265,11 @@ button:active::before {
    Links with Underline Animation
    =========================== */
 
-a {
+.menu-item {
     position: relative;
 }
 
-a::after {
+.menu-item::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -280,7 +280,7 @@ a::after {
     transition: width 0.3s ease;
 }
 
-a:hover::after {
+.menu-item:hover::after {
     width: 100%;
 }
 
